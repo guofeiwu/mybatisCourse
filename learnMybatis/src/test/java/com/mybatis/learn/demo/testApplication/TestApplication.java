@@ -33,7 +33,7 @@ public class TestApplication {
         Iterator<Message> iterator = allMessage.iterator();
         while (iterator.hasNext()){
             Message message = iterator.next();
-            System.out.println("DESCRIPTION: "+message.getDescription()+"---COMMAND:   "+message.getCommand()+" ----P_ID :" +message.getpId());
+            System.out.println("DESCRIPTION: "+message.getDescription()+"---COMMAND:   "+message.getCommand());
         }
     }
 
