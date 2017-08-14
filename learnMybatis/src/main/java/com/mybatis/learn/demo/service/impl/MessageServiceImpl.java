@@ -5,7 +5,6 @@ import com.mybatis.learn.demo.model.mapper.MessageMapper;
 import com.mybatis.learn.demo.query.MessageQuery;
 import com.mybatis.learn.demo.service.MessageService;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
