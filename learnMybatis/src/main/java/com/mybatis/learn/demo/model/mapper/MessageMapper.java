@@ -15,11 +15,8 @@ import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.UpdateProvider;
 import org.apache.ibatis.type.JdbcType;
-import org.springframework.stereotype.Component;
 
-@Component
 public interface MessageMapper {
-
     @SelectProvider(type=MessageSqlProvider.class, method="countByExample")
     long countByExample(MessageCriteria example);
 

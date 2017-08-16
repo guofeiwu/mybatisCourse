@@ -1,80 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.learn.demo.query.MessageQuery">
-  <!--
-  <sql id="common_limit">
-    <if test="startRow != null and pageSize != null" >
-      limit #{startRow}, #{pageSize}
-    </if>
-  </sql>
-  <sql id="Base_Column_List">
-    admin_user_pkid,
-    admin_user_login,
-    admin_user_name,
-    admin_user_email,
-    start_date,
-    expire_date
-  </sql>
-  <sql id="search_user_condition">
-    where 1 = 1
-    AND tau.ver = 0
-    <if test="admin_user_login != null and admin_user_login != ''" >
-      AND tau.admin_user_login LIKE CONCAT('%',#{admin_user_login},'%')
-    </if>
-    <if test="adminUserLogin != null and adminUserLogin != ''" >
-      AND tau.admin_user_login = #{adminUserLogin}
-    </if>
-    <if test="admin_user_name != null and admin_user_name != ''" >
-      AND tau.admin_user_name LIKE CONCAT('%',#{admin_user_name},'%')
-    </if>
-  </sql>
-  <select id="search" parameterType="java.util.Map" resultType="java.util.LinkedHashMap">
-    select
-    tar.admin_role_key,
-    tar.admin_role_name,
-    tau.admin_user_pkid,
-    tau.pwd,
-    tau.admin_user_login,
-    tau.admin_user_name,
-    tau.admin_user_email,
-    tau.start_date,
-    tau.expire_date,
-    taur.admin_role_pkid,
-    taur.admin_user_role_pkid
-    from t_admin_user tau
-    LEFT JOIN t_admin_user_role taur on tau.admin_user_pkid = taur.admin_user_pkid AND taur.ver = 0
-    LEFT JOIN t_admin_role tar ON tar.admin_role_pkid = taur.admin_role_pkid AND tar.ver = 0
-    <include refid="search_user_condition" />
-    <include refid="common_limit" />
-  </select>
-  <select id="count" resultType="java.lang.Integer">
-    select
-    count(*)
-    from t_admin_user tau
-    <include refid="search_user_condition" />
-  </select>
-  <select id="isRoleExit" resultType="java.lang.Integer">
-    select
-    count(*)
-    from t_admin_user_role
-    WHERE admin_user_pkid = #{admin_user_pkid}
-    AND admin_role_pkid = #{admin_role_pkid}
-  </select>
-    -->
+    <!--
+    <sql id="common_limit">
+      <if test="startRow != null and pageSize != null" >
+        limit #{startRow}, #{pageSize}
+      </if>
+    </sql>
+    <sql id="Base_Column_List">
+      admin_user_pkid,
+      admin_user_login,
+      admin_user_name,
+      admin_user_email,
+      start_date,
+      expire_date
+    </sql>
+    <sql id="search_user_condition">
+      where 1 = 1
+      AND tau.ver = 0
+      <if test="admin_user_login != null and admin_user_login != ''" >
+        AND tau.admin_user_login LIKE CONCAT('%',#{admin_user_login},'%')
+      </if>
+      <if test="adminUserLogin != null and adminUserLogin != ''" >
+        AND tau.admin_user_login = #{adminUserLogin}
+      </if>
+      <if test="admin_user_name != null and admin_user_name != ''" >
+        AND tau.admin_user_name LIKE CONCAT('%',#{admin_user_name},'%')
+      </if>
+    </sql>
+    <select id="search" parameterType="java.util.Map" resultType="java.util.LinkedHashMap">
+      select
+      tar.admin_role_key,
+      tar.admin_role_name,
+      tau.admin_user_pkid,
+      tau.pwd,
+      tau.admin_user_login,
+      tau.admin_user_name,
+      tau.admin_user_email,
+      tau.start_date,
+      tau.expire_date,
+      taur.admin_role_pkid,
+      taur.admin_user_role_pkid
+      from t_admin_user tau
+      LEFT JOIN t_admin_user_role taur on tau.admin_user_pkid = taur.admin_user_pkid AND taur.ver = 0
+      LEFT JOIN t_admin_role tar ON tar.admin_role_pkid = taur.admin_role_pkid AND tar.ver = 0
+      <include refid="search_user_condition" />
+      <include refid="common_limit" />
+    </select>
+    <select id="count" resultType="java.lang.Integer">
+      select
+      count(*)
+      from t_admin_user tau
+      <include refid="search_user_condition" />
+    </select>
+    <select id="isRoleExit" resultType="java.lang.Integer">
+      select
+      count(*)
+      from t_admin_user_role
+      WHERE admin_user_pkid = #{admin_user_pkid}
+      AND admin_role_pkid = #{admin_role_pkid}
+    </select>
+      -->
 
-  <select id="queryAll"  resultType="java.util.LinkedHashMap">
+    <select id="queryAll" resultType="java.util.LinkedHashMap">
     SELECT m.ID,COMMAND,DESCRIPTION,CONTENT,P_ID FROM message m
   </select>
 
-  <select id="queryOneById" parameterType="java.lang.Integer" resultType="java.util.Map">
+    <select id="queryOneById" parameterType="java.lang.Integer" resultType="java.util.Map">
     SELECT m.ID,COMMAND,DESCRIPTION,CONTENT,P_ID FROM message m
      WHERE m.ID = #{id}
   </select>
 
- <!-- <select id="queryOneById" parameterType="java.lang.Integer" resultType="java.util.Map">
-    SELECT m.ID,COMMAND,DESCRIPTION,CONTENT,P_ID,P.ID PersonID,p.NAME,AGE,ADDRESS FROM message m
-    LEFT JOIN person p ON m.P_ID = p.ID WHERE m.ID = #{id}
-  </select>-->
+    <resultMap id="messageId" type="com.mybatis.learn.demo.model.Message">
+        <id column="ID" property="id"/>
+        <result column="COMMAND" property="command"/>
+        <result column="DESCRIPTION" property="description"/>
+        <result column="CONTENT" property="content"/>
+        <result column="P_ID" property="pId"/>
+    </resultMap>
 
-  
+    <select id="getMessageById" parameterType="java.lang.Integer" resultType="com.mybatis.learn.demo.model.Message">
+        SELECT ID ,COMMAND,DESCRIPTION,CONTENT,PID FROM message
+        WHERE ID = #{id}
+    </select>
+   <!--
+    <select id="getMessageById" parameterType="java.lang.Integer" resultMap="messageId">
+        SELECT ID,COMMAND,DESCRIPTION,CONTENT,P_ID FROM message
+        WHERE ID = #{id}
+   </select>
+ -->
 </mapper>

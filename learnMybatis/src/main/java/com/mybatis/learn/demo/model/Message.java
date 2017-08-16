@@ -50,4 +50,15 @@ public class Message {
     public void setpId(Integer pId) {
         this.pId = pId;
     }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "id=" + id +
+                ", command='" + command + '\'' +
+                ", description='" + description + '\'' +
+                ", content='" + content + '\'' +
+                ", pId=" + pId +
+                '}';
+    }
 }

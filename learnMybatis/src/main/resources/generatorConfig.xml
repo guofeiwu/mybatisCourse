@@ -45,8 +45,8 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="message" domainObjectName="Message">
-        </table>
+        <table tableName="message" domainObjectName="Message"></table>
+        <table tableName="person" domainObjectName="Person"></table>
 
         <!-- enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"-->
