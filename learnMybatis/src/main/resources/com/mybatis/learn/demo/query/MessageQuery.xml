@@ -63,11 +63,11 @@
       -->
 
     <select id="queryAll" resultType="java.util.LinkedHashMap">
-    SELECT m.ID,COMMAND,DESCRIPTION,CONTENT,P_ID FROM message m
+    SELECT m.ID,COMMAND,DESCRIPTION,CONTENT,PID FROM message m
   </select>
 
     <select id="queryOneById" parameterType="java.lang.Integer" resultType="java.util.Map">
-    SELECT m.ID,COMMAND,DESCRIPTION,CONTENT,P_ID FROM message m
+    SELECT m.ID,COMMAND,DESCRIPTION,CONTENT,PID FROM message m
      WHERE m.ID = #{id}
   </select>
 
@@ -76,17 +76,83 @@
         <result column="COMMAND" property="command"/>
         <result column="DESCRIPTION" property="description"/>
         <result column="CONTENT" property="content"/>
-        <result column="P_ID" property="pId"/>
+        <result column="PID" property="pId"/>
     </resultMap>
-
+    <!--
+       <select id="getMessageById" parameterType="java.lang.Integer" resultMap="messageId">
+           SELECT ID,COMMAND,DESCRIPTION,CONTENT,P_ID FROM message
+           WHERE ID = #{id}
+      </select>
+    -->
     <select id="getMessageById" parameterType="java.lang.Integer" resultType="com.mybatis.learn.demo.model.Message">
-        SELECT ID ,COMMAND,DESCRIPTION,CONTENT,PID FROM message
+        SELECT ID ,COMMAND,DESCRIPTION,CONTENT,PID
+        FROM message
         WHERE ID = #{id}
     </select>
-   <!--
-    <select id="getMessageById" parameterType="java.lang.Integer" resultMap="messageId">
-        SELECT ID,COMMAND,DESCRIPTION,CONTENT,P_ID FROM message
-        WHERE ID = #{id}
-   </select>
- -->
+    <!-- Message getMessageByCommandAndId(Integer id,String command);-->
+    <select id="getMessageByCommandAndId" resultType="com.mybatis.learn.demo.model.Message">
+        SELECT ID ,COMMAND,DESCRIPTION,CONTENT,PID
+        FROM message
+        WHERE ID = #{id} AND COMMAND = #{command}
+    </select>
+    <select id="getMessageByMap" parameterType="map" resultType="com.mybatis.learn.demo.model.Message">
+        SELECT ID ,COMMAND,DESCRIPTION,CONTENT,PID
+        FROM message
+        WHERE ID = #{id} AND COMMAND = #{command}
+    </select>
+
+    <select id="getMessageByList" parameterType="list" resultType="com.mybatis.learn.demo.model.Message">
+        SELECT ID,COMMAND,DESCRIPTION,CONTENT,PID
+        FROM message
+        WHERE ID=#{list[0]}
+    </select>
+
+    <select id="getMessageList" resultType="com.mybatis.learn.demo.model.Message">
+        SELECT ID,COMMAND,DESCRIPTION,CONTENT,PID
+        FROM message
+        WHERE  DESCRIPTION LIKE  #{description}
+    </select>
+
+    <select id="getMessageReturnLikeDescription" resultType="com.mybatis.learn.demo.model.Message">
+        SELECT ID,COMMAND,DESCRIPTION,CONTENT,PID
+        FROM message
+        WHERE  DESCRIPTION LIKE  #{description}
+    </select>
+
+    <!--
+    Person
+     private Integer id;
+    private String name;
+    private Integer age;
+    private String address;
+    private List<Message> messages;
+
+    Message
+     private Integer id;
+    private String command;
+    private String description;
+    private String content;
+    private Integer pId;
+    -->
+
+    <resultMap id="getPersonId" type="com.mybatis.learn.demo.model.Person">
+        <id column="PID" property="id"/>
+        <result column="PNAME" property="name"/>
+        <result column="PAGE" property="age"/>
+        <result column="PADDRESS" property="address"/>
+        <collection property="messages" ofType="com.mybatis.learn.demo.model.Message">
+            <id column="MID" property="id"/>
+            <result column="MCOMMAND" property="command"/>
+            <result column="MDESCRIPTION" property="description"/>
+            <result column="MCOMTENT" property="content"/>
+            <result column="MPID" property="pId"/>
+        </collection>
+    </resultMap>
+    <select id="getPerson" resultMap="getPersonId">
+        SELECT p.PID PID ,p.`NAME` PNAME,p.AGE PAGE,p.ADDRESS PADDRESS,m.ID MID
+        ,m.COMMAND MCOMMAND,m.DESCRIPTION MDESCRIPTION,m.CONTENT MCOMTENT,m.PID MPID
+        FROM person p
+        LEFT JOIN message m ON p.PID = m.PID
+        WHERE p.PID =#{pid}
+    </select>
 </mapper>
