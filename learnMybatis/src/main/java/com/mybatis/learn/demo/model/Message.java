@@ -2,8 +2,10 @@ package com.mybatis.learn.demo.model;
 
 import org.apache.ibatis.type.Alias;
 
+import java.io.Serializable;
+
 @Alias("AMessage")
-public class Message {
+public class Message{
     private Integer id;
 
     private String command;

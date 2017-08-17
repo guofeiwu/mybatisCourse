@@ -40,9 +40,9 @@ public class TestApplication {
         person.setAddress("Shanghai1");
 
         Person person1 = new Person();
-        person1.setName("Person1");
-        person1.setAge(21);
-        person1.setAddress("Shanghai1");
+        person1.setName("Person2");
+        person1.setAge(22);
+        person1.setAddress("Shanghai2");
 
         personQuery.insertBatchPerson(Arrays.asList(person,person1));
 
@@ -85,7 +85,11 @@ public class TestApplication {
     @Test
     public void testMessageQuery1(){
         Message message = messageQuery.getMessageById(1);
+
         System.out.println(message);
+        Message message2 = messageQuery.getMessageById(1);
+        System.out.println(message2);
+        System.out.println(message == message2);
     }
 
     @Test
@@ -93,7 +97,6 @@ public class TestApplication {
         Message message = messageQuery.getMessageByCommandAndId(1,"查看");
         System.out.println(message);
         logger.info("message={}",message);
-
     }
 
     @Test

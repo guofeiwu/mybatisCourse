@@ -57,7 +57,7 @@
         WHERE p.PID = #{pId}
     </update>
 
-    <update id="updatePersonByPerson">
+    <update id="updatePersonByPerson" >
          UPDATE  person p
         SET
         <trim suffixOverrides=",">
@@ -96,7 +96,7 @@
 -->
 
 
-    <insert id="insertBatchPerson">
+    <insert id="insertBatchPerson" >
         <foreach collection="persons" item="person"  separator=";">
             INSERT INTO person (NAME,AGE,ADDRESS) VALUES (#{person.name},#{person.age},#{person.address})
         </foreach>
