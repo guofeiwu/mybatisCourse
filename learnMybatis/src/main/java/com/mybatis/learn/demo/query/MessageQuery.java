@@ -19,9 +19,11 @@ public interface MessageQuery {
     Message getMessageByCommandAndId(@Param("id") Integer id, @Param("command") String command);
     Message getMessageByMap(Map map);
     Message getMessageByList(List<Integer> ids);
-    List<Message> getMessageList(String description);
+    List<Message> getMessageListd(String description);
     @MapKey("id")
     Map getMessageReturnLikeDescription(String description);
     //Map<Integer,Message> getMessageReturnLikeDescription(String description);
-    Person getPerson(Integer pid);
+    List<Message> getMessageListp(Integer pid);
+
+
 }

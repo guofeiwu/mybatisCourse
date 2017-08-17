@@ -33,12 +33,12 @@ public class MessageServiceImpl implements MessageService {
             String command = (String) map.get("COMMAND");
             String description = (String) map.get("DESCRIPTION");
             String content = (String) map.get("CONTENT");
-            int p_id = (int) map.get("P_ID");
+            int pId = (int) map.get("PID");
             message.setId(id);
             message.setCommand(command);
             message.setDescription(description);
             message.setContent(content);
-            message.setpId(p_id);
+            message.setPid(pId);
             messages.add(message);
         }
         return messages;

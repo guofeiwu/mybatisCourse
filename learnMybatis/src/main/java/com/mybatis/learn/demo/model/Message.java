@@ -2,7 +2,7 @@ package com.mybatis.learn.demo.model;
 
 import org.apache.ibatis.type.Alias;
 
-@Alias(value = "AMessage")
+@Alias("AMessage")
 public class Message {
     private Integer id;
 
@@ -12,7 +12,7 @@ public class Message {
 
     private String content;
 
-    private Integer pId;
+    private Integer pid;
 
     public Integer getId() {
         return id;
@@ -46,12 +46,12 @@ public class Message {
         this.content = content == null ? null : content.trim();
     }
 
-    public Integer getpId() {
-        return pId;
+    public Integer getPid() {
+        return pid;
     }
 
-    public void setpId(Integer pId) {
-        this.pId = pId;
+    public void setPid(Integer pid) {
+        this.pid = pid;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class Message {
                 ", command='" + command + '\'' +
                 ", description='" + description + '\'' +
                 ", content='" + content + '\'' +
-                ", pId=" + pId +
+                ", pid=" + pid +
                 '}';
     }
 }

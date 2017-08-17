@@ -374,63 +374,63 @@ public class MessageCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andPIdIsNull() {
-            addCriterion("P_ID is null");
+        public Criteria andPidIsNull() {
+            addCriterion("PID is null");
             return (Criteria) this;
         }
 
-        public Criteria andPIdIsNotNull() {
-            addCriterion("P_ID is not null");
+        public Criteria andPidIsNotNull() {
+            addCriterion("PID is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPIdEqualTo(Integer value) {
-            addCriterion("P_ID =", value, "pId");
+        public Criteria andPidEqualTo(Integer value) {
+            addCriterion("PID =", value, "pid");
             return (Criteria) this;
         }
 
-        public Criteria andPIdNotEqualTo(Integer value) {
-            addCriterion("P_ID <>", value, "pId");
+        public Criteria andPidNotEqualTo(Integer value) {
+            addCriterion("PID <>", value, "pid");
             return (Criteria) this;
         }
 
-        public Criteria andPIdGreaterThan(Integer value) {
-            addCriterion("P_ID >", value, "pId");
+        public Criteria andPidGreaterThan(Integer value) {
+            addCriterion("PID >", value, "pid");
             return (Criteria) this;
         }
 
-        public Criteria andPIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("P_ID >=", value, "pId");
+        public Criteria andPidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("PID >=", value, "pid");
             return (Criteria) this;
         }
 
-        public Criteria andPIdLessThan(Integer value) {
-            addCriterion("P_ID <", value, "pId");
+        public Criteria andPidLessThan(Integer value) {
+            addCriterion("PID <", value, "pid");
             return (Criteria) this;
         }
 
-        public Criteria andPIdLessThanOrEqualTo(Integer value) {
-            addCriterion("P_ID <=", value, "pId");
+        public Criteria andPidLessThanOrEqualTo(Integer value) {
+            addCriterion("PID <=", value, "pid");
             return (Criteria) this;
         }
 
-        public Criteria andPIdIn(List<Integer> values) {
-            addCriterion("P_ID in", values, "pId");
+        public Criteria andPidIn(List<Integer> values) {
+            addCriterion("PID in", values, "pid");
             return (Criteria) this;
         }
 
-        public Criteria andPIdNotIn(List<Integer> values) {
-            addCriterion("P_ID not in", values, "pId");
+        public Criteria andPidNotIn(List<Integer> values) {
+            addCriterion("PID not in", values, "pid");
             return (Criteria) this;
         }
 
-        public Criteria andPIdBetween(Integer value1, Integer value2) {
-            addCriterion("P_ID between", value1, value2, "pId");
+        public Criteria andPidBetween(Integer value1, Integer value2) {
+            addCriterion("PID between", value1, value2, "pid");
             return (Criteria) this;
         }
 
-        public Criteria andPIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("P_ID not between", value1, value2, "pId");
+        public Criteria andPidNotBetween(Integer value1, Integer value2) {
+            addCriterion("PID not between", value1, value2, "pid");
             return (Criteria) this;
         }
     }

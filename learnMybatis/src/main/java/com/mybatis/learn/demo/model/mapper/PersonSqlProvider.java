@@ -28,8 +28,8 @@ public class PersonSqlProvider {
         SQL sql = new SQL();
         sql.INSERT_INTO("person");
         
-        if (record.getId() != null) {
-            sql.VALUES("ID", "#{id,jdbcType=INTEGER}");
+        if (record.getPid() != null) {
+            sql.VALUES("PID", "#{pid,jdbcType=INTEGER}");
         }
         
         if (record.getName() != null) {
@@ -50,9 +50,9 @@ public class PersonSqlProvider {
     public String selectByExample(PersonCriteria example) {
         SQL sql = new SQL();
         if (example != null && example.isDistinct()) {
-            sql.SELECT_DISTINCT("ID");
+            sql.SELECT_DISTINCT("PID");
         } else {
-            sql.SELECT("ID");
+            sql.SELECT("PID");
         }
         sql.SELECT("NAME");
         sql.SELECT("AGE");
@@ -74,8 +74,8 @@ public class PersonSqlProvider {
         SQL sql = new SQL();
         sql.UPDATE("person");
         
-        if (record.getId() != null) {
-            sql.SET("ID = #{record.id,jdbcType=INTEGER}");
+        if (record.getPid() != null) {
+            sql.SET("PID = #{record.pid,jdbcType=INTEGER}");
         }
         
         if (record.getName() != null) {
@@ -98,7 +98,7 @@ public class PersonSqlProvider {
         SQL sql = new SQL();
         sql.UPDATE("person");
         
-        sql.SET("ID = #{record.id,jdbcType=INTEGER}");
+        sql.SET("PID = #{record.pid,jdbcType=INTEGER}");
         sql.SET("NAME = #{record.name,jdbcType=VARCHAR}");
         sql.SET("AGE = #{record.age,jdbcType=INTEGER}");
         sql.SET("ADDRESS = #{record.address,jdbcType=VARCHAR}");
@@ -124,7 +124,7 @@ public class PersonSqlProvider {
             sql.SET("ADDRESS = #{address,jdbcType=VARCHAR}");
         }
         
-        sql.WHERE("ID = #{id,jdbcType=INTEGER}");
+        sql.WHERE("PID = #{pid,jdbcType=INTEGER}");
         
         return sql.toString();
     }

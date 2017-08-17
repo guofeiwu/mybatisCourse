@@ -1,18 +1,15 @@
 package com.mybatis.learn.demo.model;
 
-import org.springframework.context.annotation.Lazy;
-
 import java.util.List;
 
 public class Person {
-    private Integer id;
+    private Integer pid;
 
     private String name;
 
     private Integer age;
 
     private String address;
-
     private List<Message> messages;
 
     public List<Message> getMessages() {
@@ -23,12 +20,12 @@ public class Person {
         this.messages = messages;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getPid() {
+        return pid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setPid(Integer pid) {
+        this.pid = pid;
     }
 
     public String getName() {
@@ -58,11 +55,10 @@ public class Person {
     @Override
     public String toString() {
         return "Person{" +
-                "id=" + id +
+                "pid=" + pid +
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", address='" + address + '\'' +
-                ", messages=" + messages +
                 '}';
     }
 }

@@ -25,14 +25,14 @@ public interface PersonMapper {
 
     @Delete({
         "delete from person",
-        "where ID = #{id,jdbcType=INTEGER}"
+        "where PID = #{pid,jdbcType=INTEGER}"
     })
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Integer pid);
 
     @Insert({
-        "insert into person (ID, NAME, ",
+        "insert into person (PID, NAME, ",
         "AGE, ADDRESS)",
-        "values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, ",
+        "values (#{pid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, ",
         "#{age,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR})"
     })
     int insert(Person record);
@@ -42,7 +42,7 @@ public interface PersonMapper {
 
     @SelectProvider(type=PersonSqlProvider.class, method="selectByExample")
     @Results({
-        @Result(column="ID", property="id", jdbcType=JdbcType.INTEGER, id=true),
+        @Result(column="PID", property="pid", jdbcType=JdbcType.INTEGER, id=true),
         @Result(column="NAME", property="name", jdbcType=JdbcType.VARCHAR),
         @Result(column="AGE", property="age", jdbcType=JdbcType.INTEGER),
         @Result(column="ADDRESS", property="address", jdbcType=JdbcType.VARCHAR)
@@ -51,17 +51,17 @@ public interface PersonMapper {
 
     @Select({
         "select",
-        "ID, NAME, AGE, ADDRESS",
+        "PID, NAME, AGE, ADDRESS",
         "from person",
-        "where ID = #{id,jdbcType=INTEGER}"
+        "where PID = #{pid,jdbcType=INTEGER}"
     })
     @Results({
-        @Result(column="ID", property="id", jdbcType=JdbcType.INTEGER, id=true),
+        @Result(column="PID", property="pid", jdbcType=JdbcType.INTEGER, id=true),
         @Result(column="NAME", property="name", jdbcType=JdbcType.VARCHAR),
         @Result(column="AGE", property="age", jdbcType=JdbcType.INTEGER),
         @Result(column="ADDRESS", property="address", jdbcType=JdbcType.VARCHAR)
     })
-    Person selectByPrimaryKey(Integer id);
+    Person selectByPrimaryKey(Integer pid);
 
     @UpdateProvider(type=PersonSqlProvider.class, method="updateByExampleSelective")
     int updateByExampleSelective(@Param("record") Person record, @Param("example") PersonCriteria example);
@@ -77,7 +77,7 @@ public interface PersonMapper {
         "set NAME = #{name,jdbcType=VARCHAR},",
           "AGE = #{age,jdbcType=INTEGER},",
           "ADDRESS = #{address,jdbcType=VARCHAR}",
-        "where ID = #{id,jdbcType=INTEGER}"
+        "where PID = #{pid,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Person record);
 }

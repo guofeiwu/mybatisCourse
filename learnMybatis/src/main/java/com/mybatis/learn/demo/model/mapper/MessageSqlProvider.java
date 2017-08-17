@@ -44,8 +44,8 @@ public class MessageSqlProvider {
             sql.VALUES("CONTENT", "#{content,jdbcType=VARCHAR}");
         }
         
-        if (record.getpId() != null) {
-            sql.VALUES("P_ID", "#{pId,jdbcType=INTEGER}");
+        if (record.getPid() != null) {
+            sql.VALUES("PID", "#{pid,jdbcType=INTEGER}");
         }
         
         return sql.toString();
@@ -61,7 +61,7 @@ public class MessageSqlProvider {
         sql.SELECT("COMMAND");
         sql.SELECT("DESCRIPTION");
         sql.SELECT("CONTENT");
-        sql.SELECT("P_ID");
+        sql.SELECT("PID");
         sql.FROM("message");
         applyWhere(sql, example, false);
         
@@ -95,8 +95,8 @@ public class MessageSqlProvider {
             sql.SET("CONTENT = #{record.content,jdbcType=VARCHAR}");
         }
         
-        if (record.getpId() != null) {
-            sql.SET("P_ID = #{record.pId,jdbcType=INTEGER}");
+        if (record.getPid() != null) {
+            sql.SET("PID = #{record.pid,jdbcType=INTEGER}");
         }
         
         applyWhere(sql, example, true);
@@ -111,7 +111,7 @@ public class MessageSqlProvider {
         sql.SET("COMMAND = #{record.command,jdbcType=VARCHAR}");
         sql.SET("DESCRIPTION = #{record.description,jdbcType=VARCHAR}");
         sql.SET("CONTENT = #{record.content,jdbcType=VARCHAR}");
-        sql.SET("P_ID = #{record.pId,jdbcType=INTEGER}");
+        sql.SET("PID = #{record.pid,jdbcType=INTEGER}");
         
         MessageCriteria example = (MessageCriteria) parameter.get("example");
         applyWhere(sql, example, true);
@@ -134,8 +134,8 @@ public class MessageSqlProvider {
             sql.SET("CONTENT = #{content,jdbcType=VARCHAR}");
         }
         
-        if (record.getpId() != null) {
-            sql.SET("P_ID = #{pId,jdbcType=INTEGER}");
+        if (record.getPid() != null) {
+            sql.SET("PID = #{pid,jdbcType=INTEGER}");
         }
         
         sql.WHERE("ID = #{id,jdbcType=INTEGER}");

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.learn.demo.query.PersonQuery">
+    <!--
+   Person
+    private Integer id;
+   private String name;
+   private Integer age;
+   private String address;
+   private List<Message> messages;
+
+   Message
+    private Integer id;
+   private String command;
+   private String description;
+   private String content;
+   private Integer pId;
+   -->
+    <resultMap id="getPersonId" type="com.mybatis.learn.demo.model.Person">
+        <id column="PID" property="pid"/>
+        <result column="PNAME" property="name"/>
+        <result column="PAGE" property="age"/>
+        <result column="PADDRESS" property="address"/>
+        <collection property="messages" ofType="com.mybatis.learn.demo.model.Message">
+            <id column="MID" property="id"/>
+            <result column="MCOMMAND" property="command"/>
+            <result column="MDESCRIPTION" property="description"/>
+            <result column="MCOMTENT" property="content"/>
+            <result column="MPID" property="pid"/>
+        </collection>
+    </resultMap>
+    <select id="getPerson" resultMap="getPersonId">
+        SELECT p.PID PID ,p.`NAME` PNAME,p.AGE PAGE,p.ADDRESS PADDRESS,m.ID MID
+        ,m.COMMAND MCOMMAND,m.DESCRIPTION MDESCRIPTION,m.CONTENT MCOMTENT,m.PID MPID
+        FROM person p
+        LEFT JOIN message m ON p.PID = m.PID
+        WHERE p.PID =#{pid}
+    </select>
+
+    <resultMap id="getPersonMPid" type="com.mybatis.learn.demo.model.Person">
+        <id column="PID" property="pid"/>
+        <result column="NAME" property="name"/>
+        <result column="AGE" property="age"/>
+        <result column="ADDRESS" property="address"/>
+        <collection property="messages"
+                    select="com.mybatis.learn.demo.query.MessageQuery.getMessageListp"
+                    column="{pid=PID}"/>
+    </resultMap>
+
+    <select id="getPersonById" resultMap="getPersonMPid">
+        SELECT PID,AGE,ADDRESS,p.NAME FROM person p WHERE PID=#{pid}
+    </select>
+
+    <update id="updatePersonName">
+        UPDATE  person p
+        SET p.NAME = #{pName}
+        WHERE p.PID = #{pId}
+    </update>
+
+    <update id="updatePersonByPerson">
+         UPDATE  person p
+        SET
+        <trim suffixOverrides=",">
+            <if test="name!=null">
+                p.NAME =#{name},
+            </if>
+            <if test="address!=null">
+                p.ADDRESS = #{address},
+            </if>
+            <if test="age>0">
+                p.AGE = #{age},
+            </if>
+        </trim>
+            <where>
+                p.PID = #{pid}
+            </where>
+
+    </update>
+
+    <select id="selectPersonByforeach" resultType="com.mybatis.learn.demo.model.Person">
+        SELECT * FROM person WHERE PID in
+        <foreach collection="list" item="item_id" separator=","
+            open="(" close=")"
+        >
+            #{item_id}
+        </foreach>
+    </select>
+
+<!-- 方式一
+    <insert id="insertBatchPerson">
+        INSERT INTO person (NAME,AGE,ADDRESS) VALUES
+        <foreach collection="persons" item="person"  separator=",">
+            (#{person.name},#{person.age},#{person.address})
+        </foreach>
+    </insert>
+-->
+
+
+    <insert id="insertBatchPerson">
+        <foreach collection="persons" item="person"  separator=";">
+            INSERT INTO person (NAME,AGE,ADDRESS) VALUES (#{person.name},#{person.age},#{person.address})
+        </foreach>
+    </insert>
+
+    <select id="selectPersonLike" resultType="com.mybatis.learn.demo.model.Person">
+        <bind name="_name" value="'%'+name+'%'"/>
+         SELECT PID,AGE,ADDRESS,p.NAME FROM person p
+        WHERE 1=1
+         <if test="_parameter !=null">
+           AND  p.NAME LIKE #{_name}
+         </if>
+    </select>
+</mapper>
+
+

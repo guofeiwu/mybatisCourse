@@ -4,6 +4,7 @@ package com.mybatis.learn.demo.testApplication;
 import com.mybatis.learn.demo.model.Message;
 import com.mybatis.learn.demo.model.Person;
 import com.mybatis.learn.demo.query.MessageQuery;
+import com.mybatis.learn.demo.query.PersonQuery;
 import com.mybatis.learn.demo.service.MessageService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,13 +28,65 @@ public class TestApplication {
     @Resource
     private MessageQuery messageQuery;
 
+    @Resource
+    private PersonQuery personQuery;
+
+
+    @Test
+    public void testInsertBatchPerson(){
+        Person person = new Person();
+        person.setName("Person1");
+        person.setAge(21);
+        person.setAddress("Shanghai1");
+
+        Person person1 = new Person();
+        person1.setName("Person1");
+        person1.setAge(21);
+        person1.setAddress("Shanghai1");
+
+        personQuery.insertBatchPerson(Arrays.asList(person,person1));
+
+    }
+
+
+    @Test
+    public void testSelectPerson(){
+        List<Person> persons = personQuery.selectPersonByforeach(Arrays.asList(1,2));
+        logger.info("person={}" ,persons);
+    }
+
+    @Test
+    public void testUpdatePersonByPerson(){
+        Person person = new Person();
+        person.setPid(3);
+        person.setName("Alice");
+        person.setAddress("NanChang");
+        person.setAge(30);
+        personQuery.updatePersonByPerson(person);
+    }
+
+
+
+
+    @Test
+    public void testUpdatePerson(){
+        personQuery.updatePersonName(3,"Jerry");
+    }
+    @Test
+    public void testMessageByPersonId(){
+//        Person person = personQuery.getPersonById(1);
+//        logger.info("person={}",person);
+//        logger.info("person={}" ,person.getMessages());
+        List<Message> message = messageQuery.getMessageListp(1);
+        logger.info("person={}",message);
+
+    }
 
     @Test
     public void testMessageQuery1(){
         Message message = messageQuery.getMessageById(1);
         System.out.println(message);
     }
-
 
     @Test
     public void testMessageByCommandAndId(){
@@ -71,8 +124,16 @@ public class TestApplication {
     @Test
     public void testMessageList(){
         // -- WHERE  DESCRIPTION LIKE '%' #{description} '%'
-        List<Message> messages = messageQuery.getMessageList("%精彩%");
+        List<Message> messages = messageQuery.getMessageListd("%精彩%");
         System.out.println(messages);
+    }
+
+    @Test
+    public void testPersonLike(){
+        Person person = new Person();
+        person.setName("%e%");
+        List<Person> persons = personQuery.selectPersonLike(person);
+        logger.info("persons={}",persons);
     }
 
 
@@ -84,31 +145,17 @@ public class TestApplication {
 
     @Test
     public void testPerson(){
-        Person person = messageQuery.getPerson(1);
-        System.out.println(person);
+        Person person = personQuery.getPerson(1);
+        logger.info("person={}",person);
+        logger.info("message={}",person.getMessages());
 
-        //System.out.println(person.getMessages());
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     @Test
     public void testFindMessageById(){
         Message message = messageService.findMessageById(1);
-        System.out.println("description: "+ message.getDescription()+",--id:"+message.getpId());
+        System.out.println("description: "+ message.getDescription()+",--id:"+message.getPid());
     }
 
 

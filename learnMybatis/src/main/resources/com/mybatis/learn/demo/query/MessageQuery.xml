@@ -107,7 +107,7 @@
         WHERE ID=#{list[0]}
     </select>
 
-    <select id="getMessageList" resultType="com.mybatis.learn.demo.model.Message">
+    <select id="getMessageListd" resultType="com.mybatis.learn.demo.model.Message">
         SELECT ID,COMMAND,DESCRIPTION,CONTENT,PID
         FROM message
         WHERE  DESCRIPTION LIKE  #{description}
@@ -119,40 +119,8 @@
         WHERE  DESCRIPTION LIKE  #{description}
     </select>
 
-    <!--
-    Person
-     private Integer id;
-    private String name;
-    private Integer age;
-    private String address;
-    private List<Message> messages;
-
-    Message
-     private Integer id;
-    private String command;
-    private String description;
-    private String content;
-    private Integer pId;
-    -->
-
-    <resultMap id="getPersonId" type="com.mybatis.learn.demo.model.Person">
-        <id column="PID" property="id"/>
-        <result column="PNAME" property="name"/>
-        <result column="PAGE" property="age"/>
-        <result column="PADDRESS" property="address"/>
-        <collection property="messages" ofType="com.mybatis.learn.demo.model.Message">
-            <id column="MID" property="id"/>
-            <result column="MCOMMAND" property="command"/>
-            <result column="MDESCRIPTION" property="description"/>
-            <result column="MCOMTENT" property="content"/>
-            <result column="MPID" property="pId"/>
-        </collection>
-    </resultMap>
-    <select id="getPerson" resultMap="getPersonId">
-        SELECT p.PID PID ,p.`NAME` PNAME,p.AGE PAGE,p.ADDRESS PADDRESS,m.ID MID
-        ,m.COMMAND MCOMMAND,m.DESCRIPTION MDESCRIPTION,m.CONTENT MCOMTENT,m.PID MPID
-        FROM person p
-        LEFT JOIN message m ON p.PID = m.PID
-        WHERE p.PID =#{pid}
+    <select id="getMessageListp" resultType="AMessage">
+       SELECT ID,COMMAND,DESCRIPTION,CONTENT,PID
+       FROM message WHERE PID = #{pid}
     </select>
 </mapper>

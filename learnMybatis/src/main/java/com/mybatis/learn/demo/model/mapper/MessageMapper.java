@@ -15,7 +15,9 @@ import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.UpdateProvider;
 import org.apache.ibatis.type.JdbcType;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface MessageMapper {
     @SelectProvider(type=MessageSqlProvider.class, method="countByExample")
     long countByExample(MessageCriteria example);
@@ -32,10 +34,10 @@ public interface MessageMapper {
     @Insert({
         "insert into message (ID, COMMAND, ",
         "DESCRIPTION, CONTENT, ",
-        "P_ID)",
+        "PID)",
         "values (#{id,jdbcType=INTEGER}, #{command,jdbcType=VARCHAR}, ",
         "#{description,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, ",
-        "#{pId,jdbcType=INTEGER})"
+        "#{pid,jdbcType=INTEGER})"
     })
     int insert(Message record);
 
@@ -48,13 +50,13 @@ public interface MessageMapper {
         @Result(column="COMMAND", property="command", jdbcType=JdbcType.VARCHAR),
         @Result(column="DESCRIPTION", property="description", jdbcType=JdbcType.VARCHAR),
         @Result(column="CONTENT", property="content", jdbcType=JdbcType.VARCHAR),
-        @Result(column="P_ID", property="pId", jdbcType=JdbcType.INTEGER)
+        @Result(column="PID", property="pid", jdbcType=JdbcType.INTEGER)
     })
     List<Message> selectByExample(MessageCriteria example);
 
     @Select({
         "select",
-        "ID, COMMAND, DESCRIPTION, CONTENT, P_ID",
+        "ID, COMMAND, DESCRIPTION, CONTENT, PID",
         "from message",
         "where ID = #{id,jdbcType=INTEGER}"
     })
@@ -63,7 +65,7 @@ public interface MessageMapper {
         @Result(column="COMMAND", property="command", jdbcType=JdbcType.VARCHAR),
         @Result(column="DESCRIPTION", property="description", jdbcType=JdbcType.VARCHAR),
         @Result(column="CONTENT", property="content", jdbcType=JdbcType.VARCHAR),
-        @Result(column="P_ID", property="pId", jdbcType=JdbcType.INTEGER)
+        @Result(column="PID", property="pid", jdbcType=JdbcType.INTEGER)
     })
     Message selectByPrimaryKey(Integer id);
 
@@ -81,7 +83,7 @@ public interface MessageMapper {
         "set COMMAND = #{command,jdbcType=VARCHAR},",
           "DESCRIPTION = #{description,jdbcType=VARCHAR},",
           "CONTENT = #{content,jdbcType=VARCHAR},",
-          "P_ID = #{pId,jdbcType=INTEGER}",
+          "PID = #{pid,jdbcType=INTEGER}",
         "where ID = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Message record);

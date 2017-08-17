@@ -104,63 +104,63 @@ public class PersonCriteria {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andIdIsNull() {
-            addCriterion("ID is null");
+        public Criteria andPidIsNull() {
+            addCriterion("PID is null");
             return (Criteria) this;
         }
 
-        public Criteria andIdIsNotNull() {
-            addCriterion("ID is not null");
+        public Criteria andPidIsNotNull() {
+            addCriterion("PID is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIdEqualTo(Integer value) {
-            addCriterion("ID =", value, "id");
+        public Criteria andPidEqualTo(Integer value) {
+            addCriterion("PID =", value, "pid");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotEqualTo(Integer value) {
-            addCriterion("ID <>", value, "id");
+        public Criteria andPidNotEqualTo(Integer value) {
+            addCriterion("PID <>", value, "pid");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThan(Integer value) {
-            addCriterion("ID >", value, "id");
+        public Criteria andPidGreaterThan(Integer value) {
+            addCriterion("PID >", value, "pid");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("ID >=", value, "id");
+        public Criteria andPidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("PID >=", value, "pid");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThan(Integer value) {
-            addCriterion("ID <", value, "id");
+        public Criteria andPidLessThan(Integer value) {
+            addCriterion("PID <", value, "pid");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThanOrEqualTo(Integer value) {
-            addCriterion("ID <=", value, "id");
+        public Criteria andPidLessThanOrEqualTo(Integer value) {
+            addCriterion("PID <=", value, "pid");
             return (Criteria) this;
         }
 
-        public Criteria andIdIn(List<Integer> values) {
-            addCriterion("ID in", values, "id");
+        public Criteria andPidIn(List<Integer> values) {
+            addCriterion("PID in", values, "pid");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotIn(List<Integer> values) {
-            addCriterion("ID not in", values, "id");
+        public Criteria andPidNotIn(List<Integer> values) {
+            addCriterion("PID not in", values, "pid");
             return (Criteria) this;
         }
 
-        public Criteria andIdBetween(Integer value1, Integer value2) {
-            addCriterion("ID between", value1, value2, "id");
+        public Criteria andPidBetween(Integer value1, Integer value2) {
+            addCriterion("PID between", value1, value2, "pid");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("ID not between", value1, value2, "id");
+        public Criteria andPidNotBetween(Integer value1, Integer value2) {
+            addCriterion("PID not between", value1, value2, "pid");
             return (Criteria) this;
         }
 
