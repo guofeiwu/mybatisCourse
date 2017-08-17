@@ -7,6 +7,8 @@ import com.mybatis.learn.demo.query.MessageQuery;
 import com.mybatis.learn.demo.service.MessageService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -18,7 +20,7 @@ import java.util.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class TestApplication {
-
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private MessageService messageService;
 
@@ -37,6 +39,8 @@ public class TestApplication {
     public void testMessageByCommandAndId(){
         Message message = messageQuery.getMessageByCommandAndId(1,"查看");
         System.out.println(message);
+        logger.info("message={}",message);
+
     }
 
     @Test
@@ -82,6 +86,7 @@ public class TestApplication {
     public void testPerson(){
         Person person = messageQuery.getPerson(1);
         System.out.println(person);
+
         //System.out.println(person.getMessages());
     }
 

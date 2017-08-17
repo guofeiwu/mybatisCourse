@@ -1,5 +1,8 @@
 package com.mybatis.learn.demo.model;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias(value = "AMessage")
 public class Message {
     private Integer id;
 

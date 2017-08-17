@@ -5,6 +5,7 @@ import com.mybatis.learn.demo.model.Message;
 import com.mybatis.learn.demo.model.Person;
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.type.Alias;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

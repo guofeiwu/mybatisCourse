@@ -113,7 +113,7 @@
         WHERE  DESCRIPTION LIKE  #{description}
     </select>
 
-    <select id="getMessageReturnLikeDescription" resultType="com.mybatis.learn.demo.model.Message">
+    <select id="getMessageReturnLikeDescription" resultType="AMessage">
         SELECT ID,COMMAND,DESCRIPTION,CONTENT,PID
         FROM message
         WHERE  DESCRIPTION LIKE  #{description}
